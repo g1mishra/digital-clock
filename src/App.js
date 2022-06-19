@@ -3,10 +3,12 @@ import "./styles.css";
 
 const getMinuteAndSeconds = (counter) => {
   let hour = `0${Math.floor(counter / 3600)}`.slice(-2) || "00";
+  counter = counter % 3600;
   let minute = `0${Math.floor(counter / 60)}`.slice(-2) || "00";
   let sec = `0${counter % 60}`.slice(-2);
   return `${hour} : ${minute} : ${sec}`;
 };
+
 
 export default function App() {
   const [counter, setCounter] = useState(0);
