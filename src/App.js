@@ -9,27 +9,31 @@ const getMinuteAndSeconds = (counter) => {
   return `${hour} : ${minute} : ${sec}`;
 };
 
-
 export default function App() {
-  const [counter, setCounter] = useState(0);
+  let d = new Date();
+  let cur_Sec = d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
+  const [counter, setCounter] = useState(cur_Sec);
+
+  // setTimeout, setInterval
 
   // useEffect(() => {
   //   let timer = setTimeout(() => {
   //     setCounter((prev) => prev + 1);
   //   }, 1000);
-  //   return () => {
-  //     clearTimeout(timer);
-  //   };
+
+  //   return () => clearTimeout(timer);
   // }, [counter]);
 
   useEffect(() => {
     let timer = setInterval(() => {
       setCounter((prev) => prev + 1);
     }, 1000);
-    return () => {
-      clearInterval(timer);
-    };
+
+    return () => clearInterval(timer);
   }, []);
+
+  // setInterval(()=> {setCounter(prev => prev + 1)}, 1000)
+  // setTimeout(()=> {setCounter(prev => prev + 1)}, 1000)
 
   return (
     <div className="App">
